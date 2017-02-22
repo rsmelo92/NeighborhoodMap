@@ -1,0 +1,58 @@
+html, body { 
+	height: 100%; 
+	margin: 0; 
+	padding: 0; 
+	background: #000;
+}
+.list-section{
+	position: relative;
+	height: 100%;
+	width: 30%;
+}
+.map-section {
+	height: 100%;
+	width: 100%;
+    transition: margin-left .5s;
+}
+.menu-btn{
+	width: 100%;
+	height: 10%;
+	background: #000;
+	color: #fff;
+}
+.menu-btn-holder{
+	width: 10%;
+	padding: 16px;
+	font-size: 25px;
+}
+.menu-btn-holder i{
+	cursor: pointer;
+}
+.closebtn{
+	font-size: 50px;
+	color: #fff;
+	cursor: pointer;
+	position: absolute;
+	right: 18px;
+	top: 0;
+}
+#map {
+	height: 90%;
+	width: 100%;
+}
+.list-section {
+    height: 100%;
+    width: 0; 
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    overflow-x: hidden;
+    padding-top: 60px; 
+    transition: 0.5s; transition;
+}
+@media screen and (max-height: 450px) {
+    .list-section {padding-top: 15px;}
+    .list-section a {font-size: 18px;}
+}

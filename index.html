@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<title>NeighborhoodMap</title>
+	<link rel="stylesheet" href="css/main.css">
+	<script src="https://use.fontawesome.com/af104021fb.js"></script>
+
+</head>
+<body>
+	<aside id="sideMenu" class="list-section">
+		<span class="closebtn" data-bind="click: closeMenu">&times;</span>
+		<h4>Pituaçu Places</h4>
+
+	</aside>
+	<section class="map-section">
+		<div class="menu-btn">
+			<div class="menu-btn-holder">
+				<i class="fa fa-bars" data-bind="click: showMenu" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div id="map"></div>
+	</section>
+</body>
+
+<script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="lib/knockout-3.4.1.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0ttek4mjXJZ8qCK5LMPDvQkcD7Y6c1a0&callback=initMap" type="text/javascript"></script>
+
+</html>
