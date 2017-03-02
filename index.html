@@ -2,15 +2,16 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>NeighborhoodMap</title>
 	<link rel="stylesheet" href="css/main.css">
-	<script src="https://use.fontawesome.com/af104021fb.js"></script>
-
 </head>
 <body>
 	<aside id="sideMenu" class="list-section">
 		<span class="closebtn" data-bind="click: closeMenu">&times;</span>
+		
+		<input id="search-bar" placeholder="Search…" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+
 		<ul data-bind="foreach: infosVM">
 			<li class="side-menu-item" data-bind="text: nome, click: $parent.centerFunction"></li>
 		</ul>
@@ -26,9 +27,10 @@
 	</section>
 </body>
 
-<script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="lib/knockout-3.4.1.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0ttek4mjXJZ8qCK5LMPDvQkcD7Y6c1a0&callback=initMap" type="text/javascript"></script>
+<script src="https://use.fontawesome.com/af104021fb.js"></script>
+<script src="lib/jquery-3.1.1.min.js"></script>
+<script src="lib/knockout-3.4.1.js"></script>
+<script src="js/main.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0ttek4mjXJZ8qCK5LMPDvQkcD7Y6c1a0&callback=initMap" onerror="mapsError()"></script>
 
 </html>
