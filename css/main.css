@@ -53,6 +53,22 @@ html, body {
     transition: 0.5s; transition;
 }
 @media screen and (max-height: 450px) {
-    .list-section {padding-top: 15px;}
-    .list-section a {font-size: 18px;}
+    .list-section {
+    	padding-top: 15px;
+    }
+    .list-section a {
+    	font-size: 18px;
+    }
+}
+ul{
+	padding-right: 2%;
+}
+.side-menu-item{
+	list-style-type: none;
+	width: 100%;
+	font-size: 20px;
+	padding-top: 7%;
+	padding-bottom: 7%;
+	color: #fff;
+	cursor: pointer;
 }

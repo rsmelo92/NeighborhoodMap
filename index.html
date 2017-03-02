@@ -11,7 +11,9 @@
 <body>
 	<aside id="sideMenu" class="list-section">
 		<span class="closebtn" data-bind="click: closeMenu">&times;</span>
-		<h4>Pituaçu Places</h4>
+		<ul data-bind="foreach: infosVM">
+			<li class="side-menu-item" data-bind="text: nome, click: $parent.centerFunction"></li>
+		</ul>
 
 	</aside>
 	<section class="map-section">
