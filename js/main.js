@@ -81,12 +81,28 @@ function clearMarkers(lat, lng) {
   }
 }
 
-function centerMap(newLat, newLng, zoom){
-	map.setCenter({
-		lat : newLat,
-		lng : newLng
-	});
-	map.setZoom(zoom);
+function centerMap(newLat, newLng, zoom, marker){
+	if (marker) {
+		for (var i = 0; i < markerArray.length; i++) {
+			if (markerArray[i].title === marker) {
+				map.setCenter({
+					lat : newLat,
+					lng : newLng
+				});
+				map.setZoom(zoom);
+
+		  		google.maps.event.trigger(markerArray[i], 'click');
+			}
+		}
+	}
+	else{
+		map.setCenter({
+			lat : newLat,
+			lng : newLng
+		});
+		map.setZoom(zoom);
+
+	}
 }
 
 function initMap() {
@@ -128,23 +144,24 @@ $(function(){
 		    $(".map-section").css('marginLeft', '0');
 		},
 		centerFunction: function(){
+			console.log("this", this)
 			if (this.nome==='Farol da Barra (Salvador)') {
-				centerMap(-13.010339, -38.532960, 18);
+				centerMap(-13.010339, -38.532960, 18, this.nome.split(' ').join('_'));
 			}
 			else if (this.nome==='Museu Rodin Bahia') {
-				centerMap(-12.997754, -38.525217, 18);
+				centerMap(-12.997754, -38.525217, 18, this.nome.split(' ').join('_'));
 			}
 			else if (this.nome==='Parque Zoobotânico Getúlio Vargas') {
-				centerMap(-13.008796, -38.504997, 18);
+				centerMap(-13.008796, -38.504997, 18, this.nome.split(' ').join('_'));
 			}
 			else if (this.nome==='Mercado Modelo') {
-				centerMap(-12.972950, -38.513987, 18);
+				centerMap(-12.972950, -38.513987, 18, this.nome.split(' ').join('_'));
 			}
 			else if (this.nome==='Arena Fonte Nova') {
-				centerMap(-12.978737, -38.504368, 18);
+				centerMap(-12.978737, -38.504368, 18, this.nome.split(' ').join('_'));
 			}
 			else if (this.nome==='Reset Map') {
-				centerMap(-12.9899965, -38.5181656, 14);
+				centerMap(-12.9899965, -38.5181656, 14, false);
 			}
 		},
 		infosVM: ko.observableArray([
@@ -179,7 +196,7 @@ $(function(){
 
 		        viewModel.infosVM.push(array[i]);
 		        
-		        if (value.length >= 5) { //To avoid messing up with the system I only remove markers when I have a bigger search
+		        if (value.length >= 5) {
 			        for(let j = 0; j < markerArray.length; j++){
 			        	if (markerArray[j].title === viewModel.infosVM()[0].nome.split(' ').join('_')) {
 			        		console.log("Deu Match!");
