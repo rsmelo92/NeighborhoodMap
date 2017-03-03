@@ -18,7 +18,7 @@ let model = {
 
 function mapsError(){
 	alert("ERRO: Google maps não pôde ser carregado");
-};
+}
 
 function pinMap(){
 	if (markerArray.length > 0) {
@@ -50,7 +50,7 @@ function pinMap(){
 						marker.setAnimation(google.maps.Animation.BOUNCE);
 						marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
 						infowindow.open(map, marker);
-						infowindow.setContent(data.query.pages[Object.keys(data.query.pages)[0]].extract.slice(0, index) + 'Fonte: <a href=https://pt.wikipedia.org/wiki/'+model.infos[i]+'>https://pt.wikipedia.org/wiki/'+model.infos[i] +'</a> via Wikipedia API.')
+						infowindow.setContent(data.query.pages[Object.keys(data.query.pages)[0]].extract.slice(0, index) + 'Fonte: <a href=https://pt.wikipedia.org/wiki/'+model.infos[i]+'>https://pt.wikipedia.org/wiki/'+model.infos[i] +'</a> via Wikipedia API.');
 						
 					}
 				});
@@ -60,13 +60,12 @@ function pinMap(){
 			}
 		})
 		.fail(function() {
-			alert('Erro ao carregar conteúdo da Wikipédia')
+			alert('Erro ao carregar conteúdo da Wikipédia');
 		});
 	}
 }
 
 function clearMarkers(lat, lng) {
-	console.log("markerArray no remove", markerArray)
 	let saved;
   for (var i = 0; i < markerArray.length; i++) {
   	if (markerArray[i].position.lat() !== lat && markerArray[i].position.lng() !== lng) {
@@ -176,7 +175,6 @@ $(function(){
 
 			for (var i = 0; i < array.length; i++){
 
-		      	console.log("array", array[i].nome.toLowerCase())
 		      if (array[i].nome.toLowerCase().indexOf(value.toLowerCase()) !=-1) {
 
 		        viewModel.infosVM.push(array[i]);
