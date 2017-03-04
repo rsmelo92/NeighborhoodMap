@@ -21,9 +21,6 @@ function mapsError(){
 }
 
 function pinMap(){
-	if (markerArray.length > 0) {
-		clearMarkers(0,0);
-	}
 	for (let i = 0; i < 5; i++) {
 		$.ajax({
 			url: "https://pt.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&titles="+model.infos[i]+"&redirects=true",
@@ -65,20 +62,10 @@ function pinMap(){
 	}
 }
 
-function clearMarkers(lat, lng) {
-	let saved;
-  for (var i = 0; i < markerArray.length; i++) {
-  	if (markerArray[i].position.lat() !== lat && markerArray[i].position.lng() !== lng) {
-  		markerArray[i].setMap(null);
-  	}
-  	else{
-  		saved = markerArray[i];
-  	}
-  }
-  markerArray = [];
-  if (saved) {
-  	markerArray.push(saved);
-  }
+function showMarkers () {
+	for (var i = 0; i < markerArray.length; i++) {
+		markerArray[i].setVisible(true);
+	}
 }
 
 function centerMap(newLat, newLng, zoom, marker){
@@ -124,7 +111,7 @@ function openNav() {
 }
 
 $(function(){
-	// console.log("Loaded");
+	
 	var  array = [
 			{nome: 'Farol da Barra (Salvador)'},
 			{nome: 'Museu Rodin Bahia'},
@@ -144,7 +131,7 @@ $(function(){
 		    $(".map-section").css('marginLeft', '0');
 		},
 		centerFunction: function(){
-			console.log("this", this)
+			
 			if (this.nome==='Farol da Barra (Salvador)') {
 				centerMap(-13.010339, -38.532960, 18, this.nome.split(' ').join('_'));
 			}
@@ -178,8 +165,7 @@ $(function(){
 		    viewModel.infosVM.removeAll();
 
 		    if (value === ''){
-		    	clearMarkers();
-		    	pinMap();
+		    	showMarkers();
 		    	viewModel.infosVM.push(
 					{nome: 'Farol da Barra (Salvador)'},
 					{nome: 'Museu Rodin Bahia'},
@@ -189,23 +175,23 @@ $(function(){
 					{nome: 'Reset Map'});
 				return;
 			}
-
-			for (var i = 0; i < array.length; i++){
+			
+			for (var i = 0; i < array.length-1; i++){
 
 		      if (array[i].nome.toLowerCase().indexOf(value.toLowerCase()) !=-1) {
-
 		        viewModel.infosVM.push(array[i]);
-		        
-		        if (value.length >= 5) {
-			        for(let j = 0; j < markerArray.length; j++){
-			        	if (markerArray[j].title === viewModel.infosVM()[0].nome.split(' ').join('_')) {
-			        		console.log("Deu Match!");
-			        		clearMarkers(markerArray[j].position.lat(), markerArray[j].position.lng());
-			        	}
-			        }
-		        }
+		        markerArray[i].setVisible(false);
 		      }
 		    }
+		    
+		    for(let j = 0; j < markerArray.length; j++){
+	        	if (markerArray[j].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+	        		markerArray[j].setVisible(true);
+	        	}
+	        	else{
+	        		markerArray[j].setVisible(false);
+	        	}
+	        }
 		}
     };
 	
